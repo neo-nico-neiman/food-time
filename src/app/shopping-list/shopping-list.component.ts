@@ -16,4 +16,18 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  newValueAdded(data){
+    this.ingredients.push(
+      new Ingredient(data.name, data.amount)
+    );
+  }
+
+  onDeleteOrClear(data: { remove: 'last' | 'all' }) {
+    if( data.remove === 'last' ) {
+      this.ingredients.pop();
+    } else {
+      this.ingredients = [];
+    }
+  }
+
 }
