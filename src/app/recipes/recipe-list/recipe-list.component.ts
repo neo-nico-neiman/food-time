@@ -35,7 +35,7 @@ export class RecipeListComponent implements OnInit {
     })
   }
 
-  selectThisRecipe(recipe) {
+  selectedRecipeFromChild(recipe) {
     this.selectedRecipe.emit({
       name: recipe.name,
       description: recipe.description,
