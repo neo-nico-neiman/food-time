@@ -9,22 +9,14 @@ import {Recipe} from '../../recipe.model';
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe
 
-  @Output() selectedRecipe = new EventEmitter<{
-    name: string,
-    description: string,
-    ingredients: string[],
-  }>();
+  @Output() selectedRecipe = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  selectThisRecipe(recipe) {
-    this.selectedRecipe.emit({
-      name: recipe.name,
-      description: recipe.description,
-      ingredients: recipe.ingredients
-    })
+  onSelectRecipe(recipe) {
+    this.selectedRecipe.emit();
   }
 }

@@ -7,10 +7,11 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  @Output() selectedRecipe = new EventEmitter<{
+  @Output() recipeWasSelected = new EventEmitter<{
     name: string,
     description: string,
     ingredients: string[],
+    imagePath: string,
   }>();
   recipes: Recipe[] = [
     new Recipe( 'Asado Argentino',
@@ -28,18 +29,20 @@ export class RecipeListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.selectedRecipe.emit({
+    this.recipeWasSelected.emit({
       name: this.recipes[0].name,
       description: this.recipes[0].description,
-      ingredients: this.recipes[0].ingredients
+      ingredients: this.recipes[0].ingredients,
+      imagePath: this.recipes[0].imagePath,
     })
   }
 
-  selectedRecipeFromChild(recipe) {
-    this.selectedRecipe.emit({
+  onRecipeSelected(recipe: Recipe) {
+    this.recipeWasSelected.emit({
       name: recipe.name,
       description: recipe.description,
-      ingredients: recipe.ingredients
+      ingredients: recipe.ingredients,
+      imagePath: recipe.imagePath,
     })
   }
 }

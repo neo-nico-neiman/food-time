@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  selectedRecipe: {name: string, description: string, ingredients: string };
+  selectedRecipe: { name: string, description: string, ingredients: string, imagePath: string };
   constructor() { }
 
   ngOnInit(): void {
@@ -17,6 +17,7 @@ export class RecipesComponent implements OnInit {
       name: data.name,
       description: data.description,
       ingredients: data.ingredients,
+      imagePath: data.imagePath,
     }
   }
 }
