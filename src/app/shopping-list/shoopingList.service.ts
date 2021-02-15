@@ -1,25 +1,36 @@
-import {Injectable} from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Ingredient} from '../shared/ingredients.model';
 
 @Injectable({providedIn: 'root'})
 
 export class ShoppingListService {
-  ingredients: Ingredient[] = [
-    new Ingredient( 'Rib Eye', 2 ),
-    new Ingredient( 'Tomatoes', 5 ),
+  ingredientsChanged = new EventEmitter<Ingredient[]>();
+  private ingredients: Ingredient[] = [
+    new Ingredient( 'Ribs', 2, 'kg' ),
+    new Ingredient( 'Chorizo', 1, 'kg' ),
   ];
 
-  newValueAdded(data: Ingredient): void{
-    this.ingredients.push(
-      new Ingredient(data.name, data.amount)
-    );
+  getIngredients(): Ingredient[] {
+    return this.ingredients.slice();
+  }
+
+  newValueAdded(ingredient: Ingredient): void{
+    this.ingredients.push(ingredient);
+    this.ingredientsChanged.emit(this.ingredients.slice());
   }
 
   onDeleteOrClear( remove: 'last' | 'all' ): void {
     if ( remove === 'last' ) {
       this.ingredients.pop();
+      this.ingredientsChanged.emit(this.ingredients.slice())
     } else {
       this.ingredients.length = 0;
+      this.ingredientsChanged.emit(this.ingredients.slice())
     }
+  }
+
+  addIngredients( ingredients: Ingredient[] ){
+    this.ingredients.push( ... ingredients );
+    this.ingredientsChanged.emit(this.ingredients.slice())
   }
 }

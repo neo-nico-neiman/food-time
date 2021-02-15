@@ -9,13 +9,15 @@ import {ShoppingListService} from '../shoopingList.service';
 export class ShoppingEditComponent {
   @ViewChild( 'nameInput', { static: false } ) nameInputRef: ElementRef;
   @ViewChild( 'amountInput', { static: false } ) amountInputRef: ElementRef;
+  @ViewChild( 'unitInput', { static: false } ) unitInputRef: ElementRef;
 
   constructor( private shoppingListService: ShoppingListService ) { }
 
   onAddIngredients(): void {
     this.shoppingListService.newValueAdded({
       name: this.nameInputRef.nativeElement.value,
-      amount: this.amountInputRef.nativeElement.value
+      amount: this.amountInputRef.nativeElement.value,
+      unit: this.unitInputRef.nativeElement.value
     } );
   }
 
