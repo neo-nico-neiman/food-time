@@ -1,15 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, DoCheck} from '@angular/core';
+import {RecipesService} from '../recipes.service';
+import {Recipe} from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
-  @Input() recipe : { name: string, description: string, ingredients: string, imagePath: string }
-  constructor() { }
+export class RecipeDetailComponent implements DoCheck {
+  selectedRecipe: Recipe;
+  constructor( private recipesService: RecipesService) { }
 
-  ngOnInit(): void {
+  ngDoCheck(): void {
+    this.selectedRecipe = this.recipesService.selectedRecipe;
   }
-
 }

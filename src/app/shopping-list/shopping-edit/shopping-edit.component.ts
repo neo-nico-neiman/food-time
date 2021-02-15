@@ -1,34 +1,29 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {Ingredient} from '../../shared/ingredients.model';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {ShoppingListService} from '../shoopingList.service';
 
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent {
   @ViewChild( 'nameInput', { static: false } ) nameInputRef: ElementRef;
   @ViewChild( 'amountInput', { static: false } ) amountInputRef: ElementRef;
-  @Output() onValueAdded = new EventEmitter<Ingredient>();
-  @Output() onDelete = new EventEmitter<{ remove: 'last' | 'all' }>();
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor( private shoppingListService: ShoppingListService ) { }
 
-  }
-
-  onAddIngredients() {
-    this.onValueAdded.emit({
+  onAddIngredients(): void {
+    this.shoppingListService.newValueAdded({
       name: this.nameInputRef.nativeElement.value,
       amount: this.amountInputRef.nativeElement.value
     } );
   }
 
-  onDeleteIngredient() {
-    this.onDelete.emit({remove: 'last' });
+  onDeleteIngredient(): void {
+    this.shoppingListService.onDeleteOrClear('last' );
   }
-  onClearIngredients() {
-    this.onDelete.emit({remove: 'all' });
+  onClearIngredients(): void {
+    this.shoppingListService.onDeleteOrClear( 'all' );
   }
 
 }
