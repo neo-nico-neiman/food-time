@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Recipe} from '../../recipe.model';
 import {RecipesService} from '../../recipes.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-recipe-item',
@@ -9,9 +10,11 @@ import {RecipesService} from '../../recipes.service';
 })
 export class RecipeItemComponent {
   @Input() recipe: Recipe;
-  constructor( private recipesService: RecipesService) {}
+  @Input() index: number;
+  constructor( private recipesService: RecipesService,
+               private router: Router ) {}
 
   onSelectRecipe(): void {
-    this.recipesService.onSelectRecipe(this.recipe);
+    this.router.navigate([`/recipes/${this.index}`]);
   }
 }

@@ -30,14 +30,17 @@ export class RecipesService {
   selectedRecipe: Recipe = this.recipes[0];
 
   getRecipes(): Recipe[] {
-    return this.recipes.slice();
+    return this.recipes;
   }
 
-  onSelectRecipe(recipe: Recipe): void{
-    this.selectedRecipe = recipe;
+  getRecipe(id: number): Recipe {
+    if ( id + 1 > this.recipes.length ) {
+      return this.selectedRecipe;
+    }
+    return this.recipes[id];
   }
 
-  addToShoppingList(ingredients: Ingredient[]) {
+  addToShoppingList(ingredients: Ingredient[]): void {
     this.shoppingListService.addIngredients( ingredients );
   }
 }
