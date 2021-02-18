@@ -1,0 +1,28 @@
+<div class="container">
+  <label for="name"> Recipe name:
+    <ul class="list-group">
+      <li class="list-group-item">
+        <input type="text" id="name" [(ngModel)]="name">
+      </li>
+    </ul>
+  </label>
+  <br>
+  <label for="description"> Description:
+    <ul class="list-group">
+      <li class="list-group-item">
+        <input type="text" id="description" [(ngModel)]="description">
+      </li>
+    </ul>
+  </label>
+  <br>
+  <label for="ingredients"> Ingredients:
+    <ul class="list-group" *ngIf="ingredients">
+      <li class="list-group-item" *ngFor="let ingredient of ingredients" >
+        <input type="text" id="ingredients" [value]="ingredient.name + ' (' + ingredient.amount + ingredient.unit + ')' ">
+      </li>
+
+        <input type="text" >
+    </ul>
+  </label>
+  <button class="btn btn-primary" (click)="onSave()">{{editMode ? 'Save' : 'Create'}}</button>
+</div>
