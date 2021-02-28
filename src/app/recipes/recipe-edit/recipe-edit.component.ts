@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
-import {RecipesService} from '../recipes.service';
-import {Ingredient} from '../../shared/ingredients.model';
-import {Recipe} from '../recipe.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { RecipesService } from '../recipes.service';
+import { Ingredient } from '../../shared/ingredients.model';
+import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-edit',

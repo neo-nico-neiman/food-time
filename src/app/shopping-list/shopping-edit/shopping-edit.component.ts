@@ -1,5 +1,9 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {ShoppingListService} from '../shoopingList.service';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { Ingredient } from '../../shared/ingredients.model';
+import * as ShoppingListActions from '../../State/shoppingList.actions';
+import * as ShoppingListReducer from '../../State/shoppingList.reducer';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -11,21 +15,22 @@ export class ShoppingEditComponent {
   @ViewChild( 'amountInput', { static: false } ) amountInputRef: ElementRef;
   @ViewChild( 'unitInput', { static: false } ) unitInputRef: ElementRef;
 
-  constructor( private shoppingListService: ShoppingListService ) { }
+  constructor( private store: Store<{ shoppingList: ShoppingListReducer.State}> ) {}
 
   onAddIngredients(): void {
-    this.shoppingListService.newValueAdded({
-      name: this.nameInputRef.nativeElement.value,
-      amount: this.amountInputRef.nativeElement.value,
-      unit: this.unitInputRef.nativeElement.value
-    } );
+    const ingredient = new Ingredient(
+      this.nameInputRef.nativeElement.value,
+      this.amountInputRef.nativeElement.value,
+      this.unitInputRef.nativeElement.value
+    );
+    this.store.dispatch( new ShoppingListActions.AddIngredient( ingredient ) );
   }
 
   onDeleteIngredient(): void {
-    this.shoppingListService.onDeleteOrClear('last' );
+    this.store.dispatch( new ShoppingListActions.DeleteIngredient() );
   }
   onClearIngredients(): void {
-    this.shoppingListService.onDeleteOrClear( 'all' );
+    this.store.dispatch( new ShoppingListActions.DeleteAllIngredients() );
   }
 
 }

@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
-import {Recipe} from '../../recipe.model';
-import {RecipesService} from '../../recipes.service';
-import {Router} from '@angular/router';
+import { Component, Input } from '@angular/core';
+
+import { Recipe } from '../../recipe.model';
+import { RecipesService } from '../../recipes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-item',

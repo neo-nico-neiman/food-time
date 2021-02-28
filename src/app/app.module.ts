@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -15,7 +16,7 @@ import {NotFoundComponent} from './notFound/not-found.component';
 import {AppRoutingModule} from './appRouting.module';
 import { NewRecipeComponent } from './recipes/new-recipe/new-recipe.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-
+import { ShoppingListReducer } from './State/shoppingList.reducer';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,9 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    StoreModule.forRoot( {
+      shoppingList: ShoppingListReducer
+    } )
   ],
   providers: [],
   bootstrap: [AppComponent]

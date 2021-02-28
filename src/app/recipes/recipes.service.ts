@@ -1,11 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Recipe} from './recipe.model';
-import {Ingredient} from '../shared/ingredients.model';
-import {ShoppingListService} from '../shopping-list/shoopingList.service';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { Recipe } from './recipe.model';
+import { Ingredient } from '../shared/ingredients.model';
+import * as ShoppingListActions from '../State/shoppingList.actions';
+import * as ShoppingListReducer from '../State/shoppingList.reducer';
 
 @Injectable({providedIn: 'root'})
 export class RecipesService {
-  constructor( private shoppingListService: ShoppingListService ) {}
+  constructor( private store: Store<{ shoppingList: ShoppingListReducer.State}> ) {}
   private recipes: Recipe[] = [
     new Recipe( 'Asado Argentino',
       'The authentic method',
@@ -41,6 +44,6 @@ export class RecipesService {
   }
 
   addToShoppingList(ingredients: Ingredient[]): void {
-    this.shoppingListService.addIngredients( ingredients );
+    this.store.dispatch( new ShoppingListActions.AddToIngredientsList( ingredients ) );
   }
 }
