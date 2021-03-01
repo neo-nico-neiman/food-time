@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredients.model';
-import * as ShoppingListActions from '../State/shoppingList.actions';
-import * as ShoppingListReducer from '../State/shoppingList.reducer';
+import * as ShoppingListActions from '../shopping-list/Store/shoppingList.actions';
+import * as ShoppingListReducer from '../shopping-list/Store/shoppingList.reducer';
 
 @Injectable({providedIn: 'root'})
 export class RecipesService {

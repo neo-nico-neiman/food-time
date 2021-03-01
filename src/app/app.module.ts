@@ -12,11 +12,11 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
-import {NotFoundComponent} from './notFound/not-found.component';
+import { NotFoundComponent } from './notFound/not-found.component';
 import {AppRoutingModule} from './appRouting.module';
 import { NewRecipeComponent } from './recipes/new-recipe/new-recipe.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { ShoppingListReducer } from './State/shoppingList.reducer';
+import { AppReducer } from './Store/App.reducer';
 
 @NgModule({
   declarations: [
@@ -37,9 +37,7 @@ import { ShoppingListReducer } from './State/shoppingList.reducer';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot( {
-      shoppingList: ShoppingListReducer
-    } )
+    StoreModule.forRoot(AppReducer)
   ],
   providers: [],
   bootstrap: [AppComponent]

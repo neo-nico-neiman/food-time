@@ -2,8 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Ingredient } from '../../shared/ingredients.model';
-import * as ShoppingListActions from '../../State/shoppingList.actions';
-import * as ShoppingListReducer from '../../State/shoppingList.reducer';
+import * as ShoppingListActions from '../Store/shoppingList.actions';
+import * as ShoppingListReducer from '../Store/shoppingList.reducer';
 
 @Component({
   selector: 'app-shopping-edit',
